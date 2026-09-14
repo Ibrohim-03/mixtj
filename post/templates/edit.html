@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Movie</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input[type="text"], textarea { width: 300px; padding: 8px; margin-bottom: 10px; display: block; }
+        button, .btn { padding: 8px 15px; background: #007bff; color: white; border: none; border-radius: 4px; text-decoration: none; cursor: pointer; }
+        .btn-cancel { background: #6c757d; }
+    </style>
+</head>
+<body>
+
+    <h1>Edit Movie</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="title" value="{{ post.title }}" required>
+
+        <textarea name="description"  required>{{ post.description }}</textarea>
+
+        <input type="file" name="foto"><br><br>
+
+        <input type="file" name="video"><br><br>
+
+        <button type="submit">Save Changes</button>
+        <a href="{% url 'posts' %}" class="btn btn-cancel">Cancel</a>
+    </form>
+
+</body>
+</html>

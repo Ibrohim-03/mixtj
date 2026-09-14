@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .movie-card { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .search-box { margin-bottom: 20px; }
+        input[type="text"] { padding: 8px; width: 250px; }
+        button, .btn { padding: 8px 15px; background: #007bff; color: white; border: none; border-radius: 4px; text-decoration: none; cursor: pointer; }
+        .btn-create { background: #28a745; display: inline-block; margin-bottom: 15px; }
+        .btn-edit { background: #ffc107; color: #000; display: inline-block; }
+        .btn-delete { background: #dc3545; }
+        .btn-reset { background: #6c757d; }
+    </style>
+</head>
+<body>
+
+    <h1>Movies</h1>
+    <a href="{% url 'create' %}" class="btn btn-create">+ Add Movie</a>
+
+    <div class="search-box">
+        <form action="{% url 'posts' %}" method="get">
+            <input type="text" name="search" placeholder="Search movies..." value="{{ search_query }}">
+            <button type="submit">Search</button>
+            {% if search_query %}
+                <a href="{% url 'posts' %}" class="btn btn-reset">Reset</a>
+            {% endif %}
+        </form>
+    </div>
+
+    {% for post in posts %}
+        <div class="movie-card">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.description }}</p>
+
+            {% if post.foto %}
+                <img src="{{ post.foto.url }}" width="250" style="border-radius:5px;"><br><br>
+            {% endif %}
+
+            {% if post.video %}
+                <video width="450" controls>
+                    <source src="{{ post.video.url }}">
+                    Your browser does not support video playback.
+                </video><br><br>
+            {% endif %}
+
+            <small>Created at: {{ post.cr_at }}</small>
+
+            <div style="margin-top: 15px;">
+                <a href="{% url 'edit' post.pk %}" class="btn btn-edit">Edit</a>
+                
+                <form action="{% url 'delete' post.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-delete" onclick="return confirm('Вы уверены, что хотите удалить этот фильм?');">Delete</button>
+                </form>
+            </div>
+        </div>
+    {% empty %}
+        <p>Фильмы не найдены.</p>
+    {% endfor %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for post in posts %}
+    {{post.title}} <br>
+    {{post.description}} <br>
+    {{post.cr_at}} <br>
+    {% if post.foto %}
+    <img src="{{post.foto.url }}" width="400" alt="">
+    {% endif %}
+     {% if post.video %}
+    <video width="400" controls >
+        <source src="{{post.video.url}}">
+    </video>
+    {% endif %}
+    <small>{{ post.cr_at }}</small>
+    {% endfor %}
+</body>
+</html> -->

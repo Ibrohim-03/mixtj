@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{product.id}}
+    {{product.name}}
+    {{product.description}}
+    {{product.price}}
+    {{product.quantity}}
+    <a href="{%url 'delete' product.id%}"><button>Delete</button></a>
+    <a href="{%url 'update' product.id%}"><button>Update</button></a>
+
+</body>
+</html>
