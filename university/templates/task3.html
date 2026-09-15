@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3 - Students and All Grades</title>
+</head>
+<body>
+    <h2>3. Students and All Their Grades (prefetch_related)</h2>
+    {% for student in students %}
+      <h3>{{ student.name }}</h3>
+      <ul>
+        {% for grade in student.grades.all %}
+          <li>{{ grade.subject.title }}: {{ grade.score }}</li>
+        {% empty %}
+          <li>No grades found</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+</body>
+</html>

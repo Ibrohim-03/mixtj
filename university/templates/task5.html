@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5 - Student Count per Group</title>
+</head>
+<body>
+    <h2>5. Number of Students in Each Group (annotate)</h2>
+    <ul>
+      {% for group in groups %}
+        <li><strong>{{ group.name }}</strong>: {{ group.student_count }} students</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

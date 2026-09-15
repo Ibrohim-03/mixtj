@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1 - Students with Groups</title>
+</head>
+<body>
+    <h2>1. Students and Their Groups (select_related)</h2>
+    <ul>
+      {% for student in students %}
+        <li>{{ student.name }} (Age: {{ student.age }}) — Group: {{ student.group.name }}</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

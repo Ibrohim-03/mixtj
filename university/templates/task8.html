@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 8 - Enrollments per Course</title>
+</head>
+<body>
+    <h2>8. Number of Enrollments per Course (annotate)</h2>
+    <ul>
+      {% for course in courses %}
+        <li><strong>{{ course.title }}</strong>: {{ course.enrollment_count }} enrollments</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

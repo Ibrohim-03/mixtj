@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 7 - Book Count per Author</title>
+</head>
+<body>
+    <h2>7. Number of Books per Author (annotate)</h2>
+    <ul>
+      {% for author in authors %}
+        <li><strong>{{ author.name }}</strong>: {{ author.book_count }} book(s)</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2 - Grades with Students</title>
+</head>
+<body>
+    <h2>2. Grades and Students (select_related)</h2>
+    <ul>
+      {% for grade in grades %}
+        <li>Student: {{ grade.student.name }} | Subject: {{ grade.subject.title }} | Score: {{ grade.score }}</li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

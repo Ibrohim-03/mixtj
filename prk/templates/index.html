@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Django ORM Demo - PRK</title>
+</head>
+<body>
+    <h2>1. select_related </h2>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} — {{ product.category.name }} ({{ product.price }} сомони)</li>
+        {% endfor %}
+    </ul>
+
+    <h2>2. prefetch_related </h2>
+    {% for category in categories %}
+        <h3>{{ category.name }}</h3>
+        <ul>
+            {% for product in category.products.all %}
+                <li>{{ product.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <h2>3. aggregate (Общая статистика)</h2>
+    <p>AVG price: {{ price_stats.avg_price }}</p>
+    <p>Мax price: {{ price_stats.max_price }}</p>
+    <p>Мin price: {{ price_stats.min_price }}</p>
+
+    <ul>
+        {% for cat in categories_stats %}
+            <li>
+                <strong>{{ cat.name }}</strong>: 
+                Kol tovara = {{ cat.product_count }}, 
+                AVG price = {{ cat.avg_price|default:0 }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
